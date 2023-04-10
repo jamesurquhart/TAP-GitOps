@@ -12,6 +12,6 @@ tap_install:
                 # tap-gitops/<workloadname>-<namespace>-bundle
                 repository: tap-gitops
         buildservice:
-            kp_default_repository: 838546321844.dkr.ecr.us-west-2.amazonaws.com/GitOps-1
+            kp_default_repository: 838546321844.dkr.ecr.us-west-2.amazonaws.com/tap-build-service
             # Enable the build service k8s service account to bind to the AWS IAM Role
             kp_default_repository_aws_iam_role_arn: arn:aws:iam:838546321844:role/tap-build-service
