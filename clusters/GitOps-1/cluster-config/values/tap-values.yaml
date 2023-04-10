@@ -1,0 +1,47 @@
+tap_install:
+  values:
+    shared:
+      ingress_domain: "jamesurquhart.com"
+
+    ceip_policy_disclosed: true
+
+    #The above keys are minimum numbers of entries needed in tap-values.yaml to get a functioning TAP Full profile installation.
+
+    #Below are the keys which may have default values set, but can be overridden.
+
+    profile: full # Can take iterate, build, run, view.
+
+    excluded_packages:
+    - policy.apps.tanzu.vmware.com
+
+    supply_chain: basic # Can take testing, testing_scanning.
+
+    contour:
+      envoy:
+        service:
+          type: LoadBalancer # This is set by default, but can be overridden by setting a different value.
+
+    ootb_templates:
+      # Enable the config writer service to use cloud based iaas authentication
+      # which are retrieved from the developer namespace service account by
+      # default
+      iaas_auth: true
+
+    tap_gui:
+      service_type: ClusterIP # If shared.ingress_domain is set earlier, this must be set to ClusterIP.
+      app_config:
+        catalog:
+          locations:
+            - type: url
+              target: https://github.com/jamesurquhart/TAP-Catalog.git/blank/catalog-info.yaml
+
+    metadata_store:
+      ns_for_export_app_cert: "tap-devspace-1"
+      app_service_type: ClusterIP # Defaults to LoadBalancer. If shared.ingress_domain is set earlier, this must be set to ClusterIP.
+
+    scanning:
+      metadataStore:
+        url: "" # Configuration is moved, so set this string to empty.
+
+    # tap_telemetry:
+    #  customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (Optional) Identify data for creating Tanzu Application Platform usage reports.
