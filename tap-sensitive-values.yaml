@@ -1,0 +1,17 @@
+tap_install:
+    sensitive_values:
+        # TAP values that are sensitive/secret go here
+          # Based on supply_chain set above, can be changed to ootb_supply_chain_testing, ootb_supply_chain_testing_scanning.
+          ootb_supply_chain_basic:
+              registry:
+                  server: 838546321844.dkr.ecr.us-west-2.amazonaws.com
+                  # The prefix of the ECR repository.  Workloads will need
+                  # two repositories created:
+                  #
+                  # tap-gitops/<workloadname>-<namespace>
+                  # tap-gitops/<workloadname>-<namespace>-bundle
+                  repository: tap-gitops
+          buildservice:
+              kp_default_repository: 838546321844.dkr.ecr.us-west-2.amazonaws.com/tap-gitops
+              # Enable the build service k8s service account to bind to the AWS IAM Role
+              kp_default_repository_aws_iam_role_arn: arn:aws:iam:838546321844:role/tap-build-service
